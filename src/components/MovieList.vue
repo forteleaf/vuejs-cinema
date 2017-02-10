@@ -1,6 +1,6 @@
 <template>
     <div id="movie-list">
-        <movie-item v-for="movie in filteredMovies" class="movie" v-bind:movie="movie"></movie-item>
+        <movie-item v-for="movie in filteredMovies" v-bind:movie="movie.movie"></movie-item>
     </div>
 </template>
 <script>
@@ -8,7 +8,7 @@
     import MovieItem from './MovieItem.vue';
 
     export default {
-        props: ['genre', 'time', 'movies'],
+        props: [ 'genre', 'time', 'movies' ],
         methods: {
             moviePassesGenreFilter(movie) {
                 if (!this.genre.length) {
