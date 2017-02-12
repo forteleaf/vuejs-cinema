@@ -10,7 +10,7 @@
             ></movie-item>
         </div>
         <div class="no-results" v-else-if="movies.length">
-            No results.
+            {{ noResultsMsg }}
         </div>
         <div class="no-results" v-else>
             Loading...
@@ -58,6 +58,11 @@
                         .filter(this.moviePassesGenreFilter)
                         .filter(movie => movie.sessions.find(this.sessionPassesTimeFilter))
                 ;
+            },
+            noResultsMsg() {
+                let times = this.time.join(', ');
+                let genres = this.genre.join(', ');
+                return `No results for ${times}${ times.length && genres.length ? ', ' : '' }${genres}.`;
             }
         },
         components: {
