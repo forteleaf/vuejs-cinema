@@ -81,7 +81,11 @@
         directives: {
             tooltip: {
                 bind(el, bindings) {
-                    console.log(el);
+                    let div = document.createElement('DIV');
+                    let text = document.createTextNode(`Seats available: ${bindings.value.seats}`);
+                    div.appendChild(text);
+                    el.appendChild(div);
+                    console.log(bindings);
                 }
             }
         }
