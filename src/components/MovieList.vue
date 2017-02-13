@@ -25,7 +25,6 @@
     import genres from '../util/genres';
     import times from '../util/times';
     import MovieItem from './MovieItem.vue';
-    import { addClass, removeClass } from '../util/helpers';
 
     export default {
         props: [ 'genre', 'time', 'movies', 'day' ],
@@ -78,22 +77,6 @@
         },
         components: {
             MovieItem
-        },
-        directives: {
-            tooltip: {
-                bind(el, bindings) {
-                    let div = document.createElement('DIV');
-                    let text = document.createTextNode(`Seats available: ${bindings.value.seats}`);
-                    div.appendChild(text);
-                    addClass(div, 'tooltip');
-                    el.appendChild(div);
-                    let className = 'tooltip-show';
-                    el.addEventListener('mouseover', function() { addClass(div, className) });
-                    el.addEventListener('mouseout', function() { removeClass(div, className) });
-                    el.addEventListener('touchstart', function() { addClass(div, className) });
-                    el.addEventListener('touchend', function() { removeClass(div, className) });
-                }
-            }
         }
     }
 </script>
