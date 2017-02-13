@@ -12,8 +12,6 @@ import { checkFilter } from './util/bus';
 const bus = new Vue();
 Object.defineProperty(Vue.prototype, '$bus', { get() { return this.$root.bus } });
 
-import Overview from './components/Overview.vue';
-
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
@@ -29,9 +27,6 @@ new Vue({
     moment,
     day: moment(),
     bus
-  },
-  components: {
-    Overview
   },
   created() {
     this.$http.get('/api').then((response) => {
