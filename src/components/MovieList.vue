@@ -5,7 +5,7 @@
                 <div class="movie-sessions">
                     <div
                             v-for="session in filteredSessions(movie.sessions)"
-                            class="session-time-wrapper"
+                            class="session-time-wrapper tooltip-wrapper"
                             v-tooltip="{ seats: session.seats }"
                     >
                         <div class="session-time">{{ formatSessionTime(session.time) }}</div>
@@ -25,6 +25,7 @@
     import genres from '../util/genres';
     import times from '../util/times';
     import MovieItem from './MovieItem.vue';
+    import { addClass, removeClass } from '../util/helpers';
 
     export default {
         props: [ 'genre', 'time', 'movies', 'day' ],
@@ -84,8 +85,13 @@
                     let div = document.createElement('DIV');
                     let text = document.createTextNode(`Seats available: ${bindings.value.seats}`);
                     div.appendChild(text);
+                    addClass(div, 'tooltip');
                     el.appendChild(div);
-                    console.log(bindings);
+                    let className = 'tooltip-show';
+                    el.addEventListener('mouseover', function() { addClass(div, className) });
+                    el.addEventListener('mouseout', function() { removeClass(div, className) });
+                    el.addEventListener('touchstart', function() { addClass(div, className) });
+                    el.addEventListener('touchend', function() { removeClass(div, className) });
                 }
             }
         }
